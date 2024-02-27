@@ -6,13 +6,13 @@
 #    By: amylle <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 11:58:06 by amylle            #+#    #+#              #
-#    Updated: 2024/02/21 22:11:14 by amylle           ###   ########.fr        #
+#    Updated: 2024/02/27 14:42:07 by amylle           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	= ./srcs/*
 CC		= cc
-CFLAGS	= -Wextra -Wall -Werror
+CFLAGS	= -Wextra -Wall -Werror -g
 INCLUDE	= -Llibft -lft -Iincludes
 RM		= rm -rf
 
