@@ -6,7 +6,7 @@
 /*   By: amylle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 12:42:34 by amylle            #+#    #+#             */
-/*   Updated: 2024/03/01 16:59:31 by amylle           ###   ########.fr       */
+/*   Updated: 2024/03/01 17:08:06 by amylle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_stack	*ft_makestack(int argv, char **argc)
 
 	i = -1;
 	stack_a = NULL;
-	if (argv < 1)
-		ft_error();
+	if (argv == 1)
+		exit (1);
 	argc++;
 	if (argv == 2)
 		argc = ft_split(argc[0], ' ');
