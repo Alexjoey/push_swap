@@ -6,25 +6,36 @@
 /*   By: amylle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:06:14 by amylle            #+#    #+#             */
-/*   Updated: 2024/02/28 14:38:03 by amylle           ###   ########.fr       */
+/*   Updated: 2024/03/01 16:20:45 by amylle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include <limits.h>
 
-static int	checkint(t_stack *stack_a)
+int	ft_checkint(char **argc)
 {
-	while (stack_a)
+	int	i;
+	int j;
+
+	i = 0;
+	while (argc[++i])
 	{
-		if (stack_a->content < INT_MIN || stack_a->content > INT_MAX)
-			return(1);
-		stack_a = stack_a->next;
+		j = 0;
+		while (argc[i][j] && \
+				((argc[i][j] >= 9 && argc[i][j] <=13) || argc[i][j] == 32))
+			j++;
+		if (argc[i][j] == '=' || argc[i][j] == '-')
+			j++;
+		while (argc[i][j] >= '0' && argc[i][j] <= '9')
+			j++;
+		if (argc[i][j] != '\0')
+			return (0);
 	}
-	return (0);
+	return (1);
 }
 
-static int	checkduplicates(t_stack *stack_a)
+int	ft_checkduplicates(t_stack *stack_a)
 {
 	t_stack	*check;
 
@@ -40,14 +51,4 @@ static int	checkduplicates(t_stack *stack_a)
 		stack_a = stack_a->next;
 	}
 	return (0);
-}
-
-int	ft_checkargs(t_stack *stack_a)
-{
-	if (checkduplicates(stack_a))
-		return (0);
-	else if (checkint(stack_a))
-		return (0);
-	else
-		return (1);
 }

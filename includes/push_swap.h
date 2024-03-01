@@ -6,7 +6,7 @@
 /*   By: amylle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:04:51 by amylle            #+#    #+#             */
-/*   Updated: 2024/02/28 14:38:08 by amylle           ###   ########.fr       */
+/*   Updated: 2024/03/01 16:03:53 by amylle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ typedef struct s_stack
 void	ft_error(void);
 
 long	ft_atol(const char *nptr);
-int		ft_checkargs(t_stack *stack_a);
 void	ft_freestrarray(char **array);
+int		ft_checkduplicates(t_stack *stack_a);
+int		ft_checkint(char **argc);
 
 t_stack	*ft_stacklast(t_stack *lst);
 t_stack	*ft_stacknew(int n);
