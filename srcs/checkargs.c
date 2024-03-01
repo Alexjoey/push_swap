@@ -6,78 +6,47 @@
 /*   By: amylle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:06:14 by amylle            #+#    #+#             */
-/*   Updated: 2024/02/27 16:54:34 by amylle           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:38:03 by amylle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include <limits.h>
 
-static int	checkint(char **argc)
+static int	checkint(t_stack *stack_a)
 {
-	int		i;
-	long	temp;
-
-	i = 1;
-	while (argc[i])
+	while (stack_a)
 	{
-		temp = ft_atol(argc[i]);
-		if (temp < INT_MIN || temp > INT_MAX)
-			return (1);
-		i++;
+		if (stack_a->content < INT_MIN || stack_a->content > INT_MAX)
+			return(1);
+		stack_a = stack_a->next;
 	}
 	return (0);
 }
 
-static int	checkduplicates(char **argc, int size)
+static int	checkduplicates(t_stack *stack_a)
 {
-	int	i;
-	int	j;
+	t_stack	*check;
 
-	i = 0;
-	while (i < size - 1)
+	while (stack_a && stack_a->next)
 	{
-		j = i + 1;
-		while (j < size)
+		check = stack_a->next;
+		while (check)
 		{
-			if (ft_strncmp(argc[i], argc[j], 11) == 0)
+			if(stack_a->content == check->content)
 				return (1);
-			j++;
+			check = check->next;
 		}
-		i++;
+		stack_a = stack_a->next;
 	}
 	return (0);
 }
 
-static int	isstrnum(char **argc)
+int	ft_checkargs(t_stack *stack_a)
 {
-	int	i;
-	int	j;
-
-	i = 1;
-	while (argc[i])
-	{
-		j = 0;
-		if (argc[i][j] == '-')
-			j++;
-		while (argc[i][j])
-		{
-			if (!ft_isdigit(argc[i][j]))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-int	checkargs(int argv, char **argc)
-{
-	if (!isstrnum(argc))
+	if (checkduplicates(stack_a))
 		return (0);
-	else if (checkduplicates(argc, argv))
-		return (0);
-	else if (checkint(argc))
+	else if (checkint(stack_a))
 		return (0);
 	else
 		return (1);

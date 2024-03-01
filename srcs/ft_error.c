@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amylle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 16:30:35 by amylle            #+#    #+#             */
-/*   Updated: 2024/02/28 13:35:13 by amylle           ###   ########.fr       */
+/*   Created: 2024/02/28 13:10:54 by amylle            #+#    #+#             */
+/*   Updated: 2024/02/28 13:13:27 by amylle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
-int	main(int argv, char **argc)
+void	ft_error(void)
 {
-	t_stack	*stack_a;
-	t_stack *stack_b;
-
-	stack_b = NULL;
-	stack_a = ft_makestack(argv, argc);
-	if (!stack_a || !ft_checkargs(stack_a))
-	{
-		ft_stackclear(&stack_a);
-		ft_error();
-	}
-	printstacks(stack_a, stack_b);
-	ft_stackclear(&stack_a);
-	ft_stackclear(&stack_b);
+	write(2, "Error\n", 6);
+	exit (1);
 }

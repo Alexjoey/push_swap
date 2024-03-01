@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_makestack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amylle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 16:30:35 by amylle            #+#    #+#             */
-/*   Updated: 2024/02/28 13:35:13 by amylle           ###   ########.fr       */
+/*   Created: 2024/02/28 12:42:34 by amylle            #+#    #+#             */
+/*   Updated: 2024/02/29 15:48:46 by amylle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
-int	main(int argv, char **argc)
+t_stack	*ft_makestack(int argv, char **argc)
 {
+	int		i;
 	t_stack	*stack_a;
-	t_stack *stack_b;
 
-	stack_b = NULL;
-	stack_a = ft_makestack(argv, argc);
-	if (!stack_a || !ft_checkargs(stack_a))
-	{
-		ft_stackclear(&stack_a);
+	stack_a = NULL;
+	i = 0;
+	if (argv < 1)
 		ft_error();
+	else if (argv == 2)
+	{
+		argc = ft_split(argc[1], ' ');
+		if (!argc)
+			ft_error();
+		while (argc[i])
+			ft_stackadd_back(&stack_a, ft_stacknew(ft_atol(argc[i++])));
 	}
-	printstacks(stack_a, stack_b);
-	ft_stackclear(&stack_a);
-	ft_stackclear(&stack_b);
+	else
+		while (argc[++i])
+			ft_stackadd_back(&stack_a, ft_stacknew(ft_atol(argc[i])));
+	return (stack_a);
 }
