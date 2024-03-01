@@ -6,7 +6,7 @@
 /*   By: amylle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:06:14 by amylle            #+#    #+#             */
-/*   Updated: 2024/03/01 16:42:45 by amylle           ###   ########.fr       */
+/*   Updated: 2024/03/01 17:01:21 by amylle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 int	ft_checkint(char **argc)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = -1;
 	while (argc[++i])
 	{
 		j = 0;
 		while (argc[i][j] && \
-				((argc[i][j] >= 9 && argc[i][j] <=13) || argc[i][j] == 32))
+				((argc[i][j] >= 9 && argc[i][j] <= 13) || argc[i][j] == 32))
 			j++;
 		if (argc[i][j] == '=' || argc[i][j] == '-')
 			j++;
@@ -44,7 +44,7 @@ int	ft_checkduplicates(t_stack *stack_a)
 		check = stack_a->next;
 		while (check)
 		{
-			if(stack_a->content == check->content)
+			if (stack_a->content == check->content)
 				return (1);
 			check = check->next;
 		}

@@ -6,7 +6,7 @@
 /*   By: amylle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:30:35 by amylle            #+#    #+#             */
-/*   Updated: 2024/03/01 16:43:33 by amylle           ###   ########.fr       */
+/*   Updated: 2024/03/01 17:00:01 by amylle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	main(int argv, char **argc)
 {
 	t_stack	*stack_a;
-	t_stack *stack_b;
+	t_stack	*stack_b;
 
 	stack_a = NULL;
 	stack_b = NULL;

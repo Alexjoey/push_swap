@@ -6,12 +6,13 @@
 /*   By: amylle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 12:42:34 by amylle            #+#    #+#             */
-/*   Updated: 2024/03/01 16:54:37 by amylle           ###   ########.fr       */
+/*   Updated: 2024/03/01 16:59:31 by amylle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include <limits.h>
+
 t_stack	*ft_makestack(int argv, char **argc)
 {
 	int		i;
@@ -24,12 +25,8 @@ t_stack	*ft_makestack(int argv, char **argc)
 		ft_error();
 	argc++;
 	if (argv == 2)
-	{
 		argc = ft_split(argc[0], ' ');
-		if (!argc)
-			ft_error();
-	}
-	if (!ft_checkint(argc))
+	if (!argc || !ft_checkint(argc))
 		ft_error();
 	while (argc[++i])
 	{
