@@ -6,7 +6,7 @@
 /*   By: amylle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:04:51 by amylle            #+#    #+#             */
-/*   Updated: 2024/03/01 16:03:53 by amylle           ###   ########.fr       */
+/*   Updated: 2024/03/19 15:45:25 by amylle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ typedef struct s_stack
 }					t_stack;
 
 void	ft_error(void);
+void	ft_freearrayerror(char **array);
+void	ft_freestrarray(char **array);
 
 long	ft_atol(const char *nptr);
-void	ft_freestrarray(char **array);
 int		ft_checkduplicates(t_stack *stack_a);
 int		ft_checkint(char **argc);
 
@@ -53,5 +54,8 @@ void	reverse_rotate(t_stack **stack);
 void	rra(t_stack **stack_a);
 void	rrb(t_stack **stack_b);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
+
+int		ft_issorted(t_stack *stack_a);
+void	ft_threesort(t_stack **stack_a);
 
 #endif
