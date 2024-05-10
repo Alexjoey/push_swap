@@ -6,7 +6,7 @@
 #    By: amylle <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 11:58:06 by amylle            #+#    #+#              #
-#    Updated: 2024/02/27 14:42:07 by amylle           ###   ########.fr        #
+#    Updated: 2024/05/10 14:47:16 by amylle           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME	= push_swap
 all:	$(NAME)
 
 $(NAME):	$(SRCS)
-				make bonus -C ./libft
+				make -C ./libft
 				$(CC) $(CFLAGS) $(SRCS) $(INCLUDE) -o $(NAME)
 
 clean:	
