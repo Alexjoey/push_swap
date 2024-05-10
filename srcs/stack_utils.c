@@ -11,26 +11,25 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
 void	printstacks(t_stack *stack_a, t_stack *stack_b)
 {
-	printf("a       b\n");
+	ft_printf("a       b\n");
 	while (stack_a || stack_b)
 	{
 		if (stack_a)
 		{
-			printf("%d   |", stack_a->content);
+			ft_printf("%d   |", stack_a->content);
 			stack_a = stack_a->next;
 		}
 		else
-			printf("    |");
+			ft_printf("    |");
 		if (stack_b)
 		{
-			printf("   %d", stack_b->content);
+			ft_printf("   %d", stack_b->content);
 			stack_b = stack_b->next;
 		}
-		printf("\n");
+		ft_printf("\n");
 	}
 }
 

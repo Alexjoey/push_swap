@@ -20,14 +20,20 @@ static t_stack	*ft_makequotedstack(char **argc)
 	long	temp;
 
 	if (!ft_checkint(argc))
+	{
 		ft_freearrayerror(argc);
+		ft_error();
+	}
 	stack_a = NULL;
 	i = -1;
 	while (argc[++i])
 	{
 		temp = ft_atol(argc[i]);
 		if (temp > INT_MAX || temp < INT_MIN)
+		{
 			ft_freearrayerror(argc);
+			ft_error();
+		}
 		ft_stackadd_back(&stack_a, ft_stacknew(temp));
 	}
 	ft_freestrarray(argc);
@@ -40,10 +46,10 @@ t_stack	*ft_makestack(int argv, char **argc)
 	t_stack	*stack_a;
 	long	temp;
 
-	i = -1;
-	stack_a = NULL;
 	if (argv == 1)
 		exit (1);
+	i = -1;
+	stack_a = NULL;
 	argc++;
 	if (argv == 2)
 	{

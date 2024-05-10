@@ -13,7 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../libft/libft.h"
+# include "../libft/inc/libft.h"
 
 typedef struct s_stack
 {
@@ -25,7 +25,6 @@ void	ft_error(void);
 void	ft_freearrayerror(char **array);
 void	ft_freestrarray(char **array);
 
-long	ft_atol(const char *nptr);
 int		ft_checkduplicates(t_stack *stack_a);
 int		ft_checkint(char **argc);
 

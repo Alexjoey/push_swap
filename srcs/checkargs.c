@@ -25,7 +25,7 @@ int	ft_checkint(char **argc)
 		while (argc[i][j] && \
 				((argc[i][j] >= 9 && argc[i][j] <= 13) || argc[i][j] == 32))
 			j++;
-		if (argc[i][j] == '=' || argc[i][j] == '-')
+		if (argc[i][j] == '+' || argc[i][j] == '-')
 			j++;
 		while (argc[i][j] >= '0' && argc[i][j] <= '9')
 			j++;
