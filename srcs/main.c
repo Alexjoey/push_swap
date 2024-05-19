@@ -14,19 +14,16 @@
 
 int	main(int argv, char **argc)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_stacks	*stacks;
 
-	stack_a = NULL;
-	stack_b = NULL;
-	stack_a = ft_makestack(argv, argc);
-	if (!stack_a || ft_checkduplicates(stack_a))
+    ft_input_error(argv, argc);
+	stacks = ft_initstacks(argc);
+	if (!stacks->a || ft_checkduplicates(stacks->a))
 	{
-		ft_stackclear(&stack_a);
+		ft_clearall(stacks);
 		ft_error();
 	}
-	ft_threesort(&stack_a);
-	printstacks(stack_a, stack_b);
-	ft_stackclear(&stack_a);
-	ft_stackclear(&stack_b);
+    ft_sort(stacks);
+	printstacks(stacks);
+	ft_clearall(stacks);
 }

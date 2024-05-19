@@ -24,21 +24,21 @@ void	rotate(t_stack **stack)
 	tail->next = tmp;
 }
 
-void	ra(t_stack **stack_a)
+void	ra(t_stacks *stacks)
 {
-	rotate(stack_a);
+	rotate(&stacks->a);
 	ft_putstr_fd("ra\n", 1);
 }
 
-void	rb(t_stack **stack_b)
+void	rb(t_stacks *stacks)
 {
-	rotate(stack_b);
+	rotate(&stacks->b);
 	ft_putstr_fd("rb\n", 1);
 }
 
-void	rr(t_stack **stack_a, t_stack **stack_b)
+void	rr(t_stacks *stacks)
 {
-	rotate(stack_a);
-	rotate(stack_b);
+	rotate(&stacks->a);
+	rotate(&stacks->b);
 	ft_putstr_fd("rr\n", 1);
 }

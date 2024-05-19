@@ -32,21 +32,21 @@ void	reverse_rotate(t_stack **stack)
 	*stack = tail;
 }
 
-void	rra(t_stack **stack_a)
+void	rra(t_stacks *stacks)
 {
-	reverse_rotate(stack_a);
+	reverse_rotate(&stacks->a);
 	ft_putstr_fd("rra\n", 1);
 }
 
-void	rrb(t_stack **stack_b)
+void	rrb(t_stacks *stacks)
 {
-	reverse_rotate(stack_b);
+	reverse_rotate(&stacks->b);
 	ft_putstr_fd("rrb\n", 1);
 }
 
-void	rrr(t_stack **stack_a, t_stack **stack_b)
+void	rrr(t_stacks *stacks)
 {
-	reverse_rotate(stack_a);
-	reverse_rotate(stack_b);
+	reverse_rotate(&stacks->a);
+	reverse_rotate(&stacks->b);
 	ft_putstr_fd("rrr\n", 1);
 }

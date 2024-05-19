@@ -14,6 +14,48 @@
 # define PUSH_SWAP_H
 
 # include "../libft/inc/libft.h"
+# include <stdbool.h>
+
+
+typedef struct s_moves
+{
+	int	cost;
+	int	sa;
+	int	sb;
+	int	ss;
+	int	pa;
+	int	pb;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+}		t_moves;
+
+typedef struct s_cost
+{
+	int	cost;
+	int	sa;
+	int	sb;
+	int	ss;
+	int	pa;
+	int	pb;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+}		t_cost;
+
+typedef struct s_value
+{
+	int	min_a;
+	int	max_a;
+	int	min_b;
+	int	max_b;
+}		t_value;
 
 typedef struct s_stack
 {
@@ -21,40 +63,61 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-void	ft_error(void);
-void	ft_freearrayerror(char **array);
-void	ft_freestrarray(char **array);
+typedef struct s_stacks
+{
+	t_stack	*a;
+	t_stack	*b;
+	t_value	*val;
+	t_cost	*cost;
+	t_moves *moves;
+}			t_stacks;
 
-int		ft_checkduplicates(t_stack *stack_a);
-int		ft_checkint(char **argc);
 
-t_stack	*ft_stacklast(t_stack *lst);
-t_stack	*ft_stacknew(int n);
-void	ft_stackadd_back(t_stack **lst, t_stack *new);
-void	ft_stackclear(t_stack **stack);
-void	printstacks(t_stack *stack_a, t_stack *stack_b);
-t_stack	*ft_makestack(int argv, char **argc);
+void		ft_error(void);
 
-void	swap(t_stack *root);
-void	sa(t_stack *stack_a);
-void	sb(t_stack *stack_b);
-void	ss(t_stack *stack_a, t_stack *stack_b);
+void		ft_input_error(int argc, char **argv);
+int			ft_checkduplicates(t_stack *stack_a);
+bool		ft_isinputint(char **argc);
+void		ft_errorandfree(t_stacks *stacks);
 
-void	push(t_stack **giver, t_stack **receiver);
-void	pa(t_stack **stack_a, t_stack **stack_b);
-void	pb(t_stack **stack_a, t_stack **stack_b);
+t_stack		*ft_stacklast(t_stack *lst);
+t_stack		*ft_stacknew(int n);
+void		ft_stackadd_back(t_stack **lst, t_stack *newstack);
+void		ft_stackclear(t_stack **stack);
+void		printstacks(t_stacks *stacks);
+t_stacks	*ft_initstacks(char **argc);
+int			ft_stacksize(t_stack *stack);
 
-void	rotate(t_stack **stack);
-void	ra(t_stack **stack_a);
-void	rb(t_stack **stack_b);
-void	rr(t_stack **stack_a, t_stack **stack_b);
+void		swap(t_stack *root);
+void		sa(t_stacks *stacks);
+void		sb(t_stacks *stacks);
+void		ss(t_stacks *stacks);
 
-void	reverse_rotate(t_stack **stack);
-void	rra(t_stack **stack_a);
-void	rrb(t_stack **stack_b);
-void	rrr(t_stack **stack_a, t_stack **stack_b);
+void		push(t_stack **giver, t_stack **receiver);
+void		pa(t_stacks *stacks);
+void		pb(t_stacks *stacks);
 
-int		ft_issorted(t_stack *stack_a);
-void	ft_threesort(t_stack **stack_a);
+void		rotate(t_stack **stack);
+void		ra(t_stacks *stacks);
+void		rb(t_stacks*stacks);
+void		rr(t_stacks *stacks);
+
+void		reverse_rotate(t_stack **stack);
+void		rra(t_stacks *stacks);
+void		rrb(t_stacks *stacks);
+void		rrr(t_stacks *stacks);
+
+int			ft_issorted(t_stack *stack_a);
+void		ft_threesort(t_stacks *stack_a);
+void		ft_sort(t_stacks *stacks);
+void		ft_clearall(t_stacks *stacks);
+
+void		ft_movecheapest(t_stacks *stacks);
+void		calc_double_moves(t_stacks *stacks);
+void		ft_calcmoves(t_stacks *stacks);
+
+void		ft_checkminmax(t_stacks *stacks, char c);
+int			ft_maxinstack(t_stack *stack);
+int			ft_mininstack(t_stack *stack);
 
 #endif

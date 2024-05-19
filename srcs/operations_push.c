@@ -22,14 +22,14 @@ void	push(t_stack **receiver, t_stack **giver)
 	*receiver = temp;
 }
 
-void	pa(t_stack **stack_a, t_stack **stack_b)
+void	pa(t_stacks *stacks)
 {
-	push(stack_a, stack_b);
+	push(&stacks->a, &stacks->b);
 	ft_putstr_fd("pa\n", 1);
 }
 
-void	pb(t_stack **stack_a, t_stack **stack_b)
+void	pb(t_stacks *stacks)
 {
-	push(stack_b, stack_a);
-	ft_putstr_fd("pa\n", 1);
+	push(&stacks->b, &stacks->a);
+	ft_putstr_fd("pb\n", 1);
 }

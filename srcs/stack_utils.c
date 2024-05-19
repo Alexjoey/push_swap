@@ -12,25 +12,43 @@
 
 #include "../includes/push_swap.h"
 
-void	printstacks(t_stack *stack_a, t_stack *stack_b)
+void	printstacks(t_stacks *stacks)
 {
+	t_stack	*temp_a;
+	t_stack	*temp_b;
+
+	temp_a = stacks->a;
+	temp_b = stacks->b;
 	ft_printf("a       b\n");
-	while (stack_a || stack_b)
+	while (temp_a || temp_b)
 	{
-		if (stack_a)
+		if (temp_a)
 		{
-			ft_printf("%d   |", stack_a->content);
-			stack_a = stack_a->next;
+			ft_printf("%d   |", temp_a->content);
+			temp_a = temp_a->next;
 		}
 		else
 			ft_printf("    |");
-		if (stack_b)
+		if (temp_b)
 		{
-			ft_printf("   %d", stack_b->content);
-			stack_b = stack_b->next;
+			ft_printf("   %d", temp_b->content);
+			temp_b = temp_b->next;
 		}
 		ft_printf("\n");
 	}
+}
+
+int	ft_stacksize(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	while (stack)
+	{
+		i++;
+		stack = stack->next;
+	}
+	return (i);
 }
 
 t_stack	*ft_stacknew(int n)
@@ -65,16 +83,4 @@ void	ft_stackadd_back(t_stack **stack, t_stack *new)
 	}
 	last = ft_stacklast(*stack);
 	last->next = new;
-}
-
-void	ft_stackclear(t_stack **stack)
-{
-	t_stack	*tmp;
-
-	while (stack && *stack)
-	{
-		tmp = (*stack)->next;
-		free (*stack);
-		*stack = tmp;
-	}
 }

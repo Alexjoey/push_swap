@@ -23,21 +23,21 @@ void	swap(t_stack *root)
 	sec->content = temp;
 }
 
-void	sa(t_stack *stack_a)
+void	sa(t_stacks *stacks)
 {
-	swap(stack_a);
+	swap(stacks->a);
 	ft_putstr_fd("sa\n", 1);
 }
 
-void	sb(t_stack *stack_b)
+void	sb(t_stacks *stacks)
 {
-	swap(stack_b);
+	swap(stacks->b);
 	ft_putstr_fd("sb\n", 1);
 }
 
-void	ss(t_stack *stack_a, t_stack *stack_b)
+void	ss(t_stacks *stacks)
 {
-	swap(stack_a);
-	swap(stack_b);
+	swap(stacks->a);
+	swap(stacks->b);
 	ft_putstr_fd("ss\n", 1);
 }

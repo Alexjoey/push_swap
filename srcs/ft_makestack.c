@@ -13,58 +13,26 @@
 #include "../includes/push_swap.h"
 #include <limits.h>
 
-static t_stack	*ft_makequotedstack(char **argc)
+t_stacks	*ft_initstacks(char **argc)
 {
-	int		i;
-	t_stack	*stack_a;
-	long	temp;
+	int			i;
+	t_stacks	*stacks;
+	t_stack		*new;
 
-	if (!ft_checkint(argc))
-	{
-		ft_freearrayerror(argc);
-		ft_error();
-	}
-	stack_a = NULL;
-	i = -1;
+	new = NULL;
+	stacks = ft_calloc(1, sizeof(*stacks));
+	if (!stacks)
+		ft_error ();
+	i = 0;
 	while (argc[++i])
 	{
-		temp = ft_atol(argc[i]);
-		if (temp > INT_MAX || temp < INT_MIN)
+		new = ft_stacknew(ft_atoi(argc[i]));
+		if (!new)
 		{
-			ft_freearrayerror(argc);
-			ft_error();
+			ft_clearall(stacks);
+			ft_error ();
 		}
-		ft_stackadd_back(&stack_a, ft_stacknew(temp));
+		ft_stackadd_back(&stacks->a, new);
 	}
-	ft_freestrarray(argc);
-	return (stack_a);
-}
-
-t_stack	*ft_makestack(int argv, char **argc)
-{
-	int		i;
-	t_stack	*stack_a;
-	long	temp;
-
-	if (argv == 1)
-		exit (1);
-	i = -1;
-	stack_a = NULL;
-	argc++;
-	if (argv == 2)
-	{
-		argc = ft_split(argc[0], ' ');
-		stack_a = ft_makequotedstack(argc);
-		return (stack_a);
-	}
-	if (!ft_checkint(argc))
-		ft_error();
-	while (argc[++i])
-	{
-		temp = ft_atol(argc[i]);
-		if (temp > INT_MAX || temp < INT_MIN)
-			ft_error();
-		ft_stackadd_back(&stack_a, ft_stacknew(temp));
-	}
-	return (stack_a);
+	return (stacks);
 }
