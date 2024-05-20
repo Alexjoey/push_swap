@@ -15,9 +15,20 @@
 int	main(int argv, char **argc)
 {
 	t_stacks	*stacks;
+	char		**array;
 
-	ft_input_error(argv, argc);
-	stacks = ft_initstacks(argc);
+	if (argv == 2)
+	{
+		array = ft_split(argc[1], ' ');
+		ft_input_error(argv, array);
+		stacks = ft_initstacks(argv, array);
+		ft_freestrarray(array);
+	}
+	else
+	{
+		ft_input_error(argv, ++argc);
+		stacks = ft_initstacks(argv, argc);
+	}
 	if (!stacks->a || ft_checkduplicates(stacks->a))
 	{
 		ft_clearall(stacks);

@@ -13,7 +13,7 @@
 #include "../includes/push_swap.h"
 #include <limits.h>
 
-t_stacks	*ft_initstacks(char **argc)
+t_stacks	*ft_initstacks(int argv, char **array)
 {
 	int			i;
 	t_stacks	*stacks;
@@ -22,14 +22,19 @@ t_stacks	*ft_initstacks(char **argc)
 	new = NULL;
 	stacks = ft_calloc(1, sizeof(*stacks));
 	if (!stacks)
-		ft_error ();
-	i = 0;
-	while (argc[++i])
 	{
-		new = ft_stacknew(ft_atoi(argc[i]));
+		ft_freestrarray(array);
+		ft_error ();
+	}
+	i = -1;
+	while (array[++i])
+	{
+		new = ft_stacknew(ft_atoi(array[i]));
 		if (!new)
 		{
 			ft_clearall(stacks);
+			if (argv == 2)
+				ft_freestrarray(array);
 			ft_error ();
 		}
 		ft_stackadd_back(&stacks->a, new);

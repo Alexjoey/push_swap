@@ -68,13 +68,14 @@ void		ft_input_error(int argc, char **argv);
 int			ft_checkduplicates(t_stack *stack_a);
 bool		ft_isinputint(char **argc);
 void		ft_errorandfree(t_stacks *stacks);
+void		ft_freestrarray(char **argc);
 
 t_stack		*ft_stacklast(t_stack *lst);
 t_stack		*ft_stacknew(int n);
 void		ft_stackadd_back(t_stack **lst, t_stack *newstack);
 void		ft_stackclear(t_stack **stack);
 void		printstacks(t_stacks *stacks);
-t_stacks	*ft_initstacks(char **argc);
+t_stacks	*ft_initstacks(int argv, char **argc);
 int			ft_stacksize(t_stack *stack);
 
 void		swap(t_stack *root);

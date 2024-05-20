@@ -19,12 +19,28 @@ void	ft_error(void)
 	exit (1);
 }
 
+void	ft_freestrarray(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+		i++;
+	while (i-- > 0)
+		free (array[i]);
+	free (array);
+}
+
 void	ft_input_error(int argc, char **argv)
 {
 	if (argc == 1)
 		exit (0);
 	if (ft_isinputint(argv) == false)
+	{
+		if (argc == 2)
+			ft_freestrarray(argv);
 		ft_error ();
+	}
 }
 
 bool	ft_isinputint(char **argc)
@@ -33,7 +49,7 @@ bool	ft_isinputint(char **argc)
 	int		j;
 	long	temp;
 
-	i = 0;
+	i = -1;
 	while (argc[++i])
 	{
 		j = 0;
