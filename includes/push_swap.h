@@ -16,7 +16,6 @@
 # include "../libft/inc/libft.h"
 # include <stdbool.h>
 
-
 typedef struct s_moves
 {
 	int	cost;
@@ -49,14 +48,6 @@ typedef struct s_cost
 	int	rrr;
 }		t_cost;
 
-typedef struct s_value
-{
-	int	min_a;
-	int	max_a;
-	int	min_b;
-	int	max_b;
-}		t_value;
-
 typedef struct s_stack
 {
 	int				content;
@@ -67,11 +58,9 @@ typedef struct s_stacks
 {
 	t_stack	*a;
 	t_stack	*b;
-	t_value	*val;
 	t_cost	*cost;
-	t_moves *moves;
+	t_moves	*moves;
 }			t_stacks;
-
 
 void		ft_error(void);
 
@@ -119,5 +108,8 @@ void		ft_calcmoves(t_stacks *stacks);
 void		ft_checkminmax(t_stacks *stacks, char c);
 int			ft_maxinstack(t_stack *stack);
 int			ft_mininstack(t_stack *stack);
+int			find_index_by_value(t_stack *stack, int i);
+void		push_to_a(t_stacks *stacks);
+int			find_closest_smaller_val(t_stacks *stacks, int i);
 
 #endif

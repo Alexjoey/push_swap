@@ -54,7 +54,7 @@ void	cost_rotate_a(t_stacks *stacks, t_stack *curr, int i)
 	stacks->moves->ra = 0;
 	stacks->moves->rra = 0;
 	if (stacks->a->content == curr->content)
-		return;
+		return ;
 	size = ft_stacksize(stacks->a);
 	if (i >= (size + 1) / 2)
 		stacks->moves->rra = (size - i);
@@ -64,8 +64,8 @@ void	cost_rotate_a(t_stacks *stacks, t_stack *curr, int i)
 
 // look through the whole stack
 // target will always be next smallest number
-// or if youre smallest, then your target is max_b
-int	find_valueof_target(t_stacks *stacks, int i)
+// or if youre smallest, then your target is max of b
+int	find_closest_smaller_val(t_stacks *stacks, int i)
 {
 	int		min_diff;
 	long	temp;
@@ -86,14 +86,14 @@ int	find_valueof_target(t_stacks *stacks, int i)
 		ptr = ptr->next;
 	}
 	if (ret_val == 0)
-		return (stacks->val->max_b);
+		return (ft_maxinstack(stacks->b));
 	return (ret_val);
 }
 
 int	find_index_by_value(t_stack *stack, int i)
 {
-	int	index;
-	t_stack *ptr;
+	int		index;
+	t_stack	*ptr;
 
 	index = 0;
 	ptr = stack;
@@ -108,7 +108,7 @@ int	find_index_by_value(t_stack *stack, int i)
 }
 
 //calculate cost to place value i into the stack
-void	cost_rotate_b(t_stacks *stacks, int	i)
+void	cost_rotate_b(t_stacks *stacks, int i)
 {
 	int	nbr;
 	int	ind;
@@ -116,7 +116,7 @@ void	cost_rotate_b(t_stacks *stacks, int	i)
 
 	stacks->moves->rb = 0;
 	stacks->moves->rrb = 0;
-	nbr = find_valueof_target(stacks, i);
+	nbr = find_closest_smaller_val(stacks, i);
 	ind = find_index_by_value(stacks->b, nbr);
 	size = ft_stacksize(stacks->b);
 	if (ind >= (size + 1) / 2)
@@ -145,9 +145,9 @@ void	calc_double_moves(t_stacks *stacks)
 
 void	calc_update_cost(t_stacks *stacks, int i)
 {
-	stacks->moves->cost = stacks->moves->pb + stacks->moves->ra\
-		+ stacks->moves->rb + stacks->moves->rr + stacks->moves->rra\
-		+ stacks->moves->rrb + stacks->moves->rrr;
+	stacks->moves->cost = stacks->moves->pb + stacks->moves->ra \
+	+ stacks->moves->rb + stacks->moves->rr + stacks->moves->rra \
+	+ stacks->moves->rrb + stacks->moves->rrr;
 	if (i == 0 || stacks->cost->cost > stacks->moves->cost)
 	{
 		stacks->cost->cost = stacks->moves->cost;
@@ -201,26 +201,22 @@ void	ft_movecheapest(t_stacks *stacks)
 {
 	t_moves	*moves;
 	t_cost	*cost;
-	t_value	*val;
-	int	i;
+
 	stacks->moves = ft_calloc(1, sizeof(*moves));
-	stacks->cost = ft_calloc(1, sizeof(*cost));	
-	stacks->val = ft_calloc(1, sizeof(*val));
-	if (!stacks->moves || !stacks->cost || !stacks->val)
+	stacks->cost = ft_calloc(1, sizeof(*cost));
+	if (!stacks->moves || !stacks->cost)
 		ft_errorandfree(stacks);
-	while ((i = ft_stacksize(stacks->a)) != 3)
+	while (ft_stacksize(stacks->a) != 3)
 	{
-		stacks->val->max_b = ft_maxinstack(stacks->b);
-		stacks->val->min_b = ft_mininstack(stacks->b);
 		ft_calcmoves(stacks);
 		do_moves(stacks);
-		printstacks(stacks);
 	}
 }
 
 void	ft_sort(t_stacks *stacks)
 {
-	if (ft_issorted(stacks->a));
+	if (ft_issorted(stacks->a))
+		return ;
 	else if (ft_stacksize(stacks->a) <= 3)
 		ft_threesort(stacks);
 	else
@@ -229,6 +225,6 @@ void	ft_sort(t_stacks *stacks)
 		pb(stacks);
 		ft_movecheapest(stacks);
 		ft_threesort(stacks);
-	//	ft_movestack_a(stacks);
+		push_to_a(stacks);
 	}
 }

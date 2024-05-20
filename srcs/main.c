@@ -16,14 +16,13 @@ int	main(int argv, char **argc)
 {
 	t_stacks	*stacks;
 
-    ft_input_error(argv, argc);
+	ft_input_error(argv, argc);
 	stacks = ft_initstacks(argc);
 	if (!stacks->a || ft_checkduplicates(stacks->a))
 	{
 		ft_clearall(stacks);
 		ft_error();
 	}
-    ft_sort(stacks);
-	printstacks(stacks);
+	ft_sort(stacks);
 	ft_clearall(stacks);
 }
