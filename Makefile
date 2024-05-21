@@ -25,10 +25,12 @@ all:	$(NAME)
 bonus:	$(NAME) $(BONUS)
 $(NAME):	$(SRCS)
 				make -C ./libft
-				$(CC) $(CFLAGS) $(MAIN) $(SRCS) $(INCLUDE) -o $(NAME)
+				@echo Compiling $(NAME)
+				@$(CC) $(CFLAGS) $(MAIN) $(SRCS) $(INCLUDE) -o $(NAME)
 
 $(BONUS):	$(SRCS)
-				$(CC) $(CFLAGS) $(BONUS_SRC) $(SRCS) $(INCLUDE) -o $(BONUS)
+				@echo Compiling $(BONUS)
+				@$(CC) $(CFLAGS) $(BONUS_SRC) $(SRCS) $(INCLUDE) -o $(BONUS)
 clean:	
 				$(RM) $(OBJS)
 				make clean -C ./libft

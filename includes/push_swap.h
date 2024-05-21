@@ -62,6 +62,25 @@ void		ft_stackclear(t_stack **stack);
 void		printstacks(t_stacks *stacks);
 t_stacks	*ft_initstacks(int argv, char **argc);
 int			ft_stacksize(t_stack *stack);
+bool		ft_issorted(t_stack *stack_a);
+
+void		ft_threesort(t_stacks *stack_a);
+void		ft_sort(t_stacks *stacks);
+void		ft_clearall(t_stacks *stacks);
+
+void		ft_movecheapest(t_stacks *stacks);
+void		cost_double_moves(t_stacks *stacks);
+void		cost_update(t_stacks *stacks, int i);
+void		ft_calcmoves(t_stacks *stacks);
+void		cost_rotate_b(t_stacks *stacks, int i);
+void		cost_rotate_a(t_stacks *stacks, t_stack *curr, int i);
+void		push_to_a(t_stacks *stacks);
+
+void		ft_checkminmax(t_stacks *stacks, char c);
+int			ft_maxinstack(t_stack *stack);
+int			ft_mininstack(t_stack *stack);
+int			find_index_by_value(t_stack *stack, int i);
+int			find_closest_smaller_val(t_stacks *stacks, int i);
 
 void		swap(t_stack *root);
 void		sa(t_stacks *stacks);
@@ -81,21 +100,5 @@ void		reverse_rotate(t_stack **stack);
 void		rra(t_stacks *stacks);
 void		rrb(t_stacks *stacks);
 void		rrr(t_stacks *stacks);
-
-bool		ft_issorted(t_stack *stack_a);
-void		ft_threesort(t_stacks *stack_a);
-void		ft_sort(t_stacks *stacks);
-void		ft_clearall(t_stacks *stacks);
-
-void		ft_movecheapest(t_stacks *stacks);
-void		calc_double_moves(t_stacks *stacks);
-void		ft_calcmoves(t_stacks *stacks);
-
-void		ft_checkminmax(t_stacks *stacks, char c);
-int			ft_maxinstack(t_stack *stack);
-int			ft_mininstack(t_stack *stack);
-int			find_index_by_value(t_stack *stack, int i);
-void		push_to_a(t_stacks *stacks);
-int			find_closest_smaller_val(t_stacks *stacks, int i);
 
 #endif
