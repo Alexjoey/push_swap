@@ -97,7 +97,7 @@ void		rra(t_stacks *stacks);
 void		rrb(t_stacks *stacks);
 void		rrr(t_stacks *stacks);
 
-int			ft_issorted(t_stack *stack_a);
+bool		ft_issorted(t_stack *stack_a);
 void		ft_threesort(t_stacks *stack_a);
 void		ft_sort(t_stacks *stacks);
 void		ft_clearall(t_stacks *stacks);

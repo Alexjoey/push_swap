@@ -13,15 +13,15 @@
 #include "../includes/push_swap.h"
 #include <limits.h>
 
-int	ft_issorted(t_stack *stack_a)
+bool	ft_issorted(t_stack *stack_a)
 {
 	while (stack_a && stack_a->next)
 	{
 		if (stack_a->content > stack_a->next->content)
-			return (0);
+			return (false);
 		stack_a = stack_a->next;
 	}
-	return (1);
+	return (true);
 }
 
 void	ft_threesort(t_stacks *stacks)
@@ -215,7 +215,7 @@ void	ft_movecheapest(t_stacks *stacks)
 
 void	ft_sort(t_stacks *stacks)
 {
-	if (ft_issorted(stacks->a))
+	if (ft_issorted(stacks->a) == true)
 		return ;
 	else if (ft_stacksize(stacks->a) <= 3)
 		ft_threesort(stacks);
