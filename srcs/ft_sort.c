@@ -13,16 +13,6 @@
 #include "../includes/push_swap.h"
 #include <limits.h>
 
-bool	ft_issorted(t_stack *stack_a)
-{
-	while (stack_a && stack_a->next)
-	{
-		if (stack_a->content > stack_a->next->content)
-			return (false);
-		stack_a = stack_a->next;
-	}
-	return (true);
-}
 
 void	ft_threesort(t_stacks *stacks)
 {
@@ -90,22 +80,6 @@ int	find_closest_smaller_val(t_stacks *stacks, int i)
 	return (ret_val);
 }
 
-int	find_index_by_value(t_stack *stack, int i)
-{
-	int		index;
-	t_stack	*ptr;
-
-	index = 0;
-	ptr = stack;
-	while (ptr)
-	{
-		if (ptr->content == i)
-			return (index);
-		index++;
-		ptr = ptr->next;
-	}
-	return (index);
-}
 
 //calculate cost to place value i into the stack
 void	cost_rotate_b(t_stacks *stacks, int i)
@@ -200,7 +174,7 @@ void	do_moves(t_stacks *stacks)
 void	ft_movecheapest(t_stacks *stacks)
 {
 	t_moves	*moves;
-	t_cost	*cost;
+	t_moves	*cost;
 
 	stacks->moves = ft_calloc(1, sizeof(*moves));
 	stacks->cost = ft_calloc(1, sizeof(*cost));

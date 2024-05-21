@@ -33,22 +33,6 @@ typedef struct s_moves
 	int	rrr;
 }		t_moves;
 
-typedef struct s_cost
-{
-	int	cost;
-	int	sa;
-	int	sb;
-	int	ss;
-	int	pa;
-	int	pb;
-	int	ra;
-	int	rb;
-	int	rr;
-	int	rra;
-	int	rrb;
-	int	rrr;
-}		t_cost;
-
 typedef struct s_stack
 {
 	int				content;
@@ -59,7 +43,7 @@ typedef struct s_stacks
 {
 	t_stack	*a;
 	t_stack	*b;
-	t_cost	*cost;
+	t_moves	*cost;
 	t_moves	*moves;
 }			t_stacks;
 

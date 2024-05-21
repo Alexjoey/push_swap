@@ -38,25 +38,29 @@ void	put_a_in_order(t_stacks *stacks)
 		return ;
 	size = ft_stacksize(stacks->a);
 	if (i >= (size + 1) / 2)
+	{
 		stacks->moves->rra = (size - i);
+		while (stacks->moves->rra-- > 0)
+			rra(stacks);
+	}
 	else
+	{
 		stacks->moves->ra = i;
-	while (stacks->moves->rra-- > 0)
-		rra(stacks);
-	while (stacks->moves->ra-- > 0)
-		ra(stacks);
+		while (stacks->moves->ra-- > 0)
+			ra(stacks);
+	}
 }
 
 //after all has been pushed to b besides 3 elements
 //find the target of current b, because of how its pushed you only need rra
 //then put min value as n1 of the stack
-void	push_to_a(t_stacks *stacks)
+void	push_to_a(t_stacks *s)
 {
-	while (stacks->b)
+	while (s->b)
 	{
-		while (!(stacks->a->content == find_closest_bigger_val(stacks, stacks->b->content)))
-			rra(stacks);
-		pa(stacks);
+		while (!(s->a->content == find_closest_bigger_val(s, s->b->content)))
+			rra(s);
+		pa(s);
 	}
-	put_a_in_order(stacks);
+	put_a_in_order(s);
 }
