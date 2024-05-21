@@ -10,12 +10,22 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= ./srcs/*
-MAIN	= ./main.c
-BONUS_SRC	= ./bonus/checker_bonus.c
+SRC_DIR	= ./srcs
+OBJ_DIR	= ./obj
+INC_DIR	= ./includes
+
+SRCS	=	./srcs/ft_sort.c ./srcs/operations_reverse_rotate.c ./srcs/main.c \
+			./srcs/calculate_moves_cost.c ./srcs/ft_checkinputerrors.c \
+			./srcs/operations_rotate.c ./srcs/operations_swap.c ./srcs/operations_push.c \
+			./srcs/stack_utils2.c ./srcs/ft_initstack.c ./srcs/stack_utils.c \
+			./srcs/ft_error.c ./srcs/moves_a.c 
+
+MAIN		=	./srcs/main.c
+BONUS_SRC	=	./bonus/checker_bonus.c
+
 CC		= cc
 CFLAGS	= -Wextra -Wall -Werror -g
-INCLUDE	= -Llibft -lft -Iincludes
+INCLUDE	= -Llibft -lft -I$(INC_DIR)
 RM		= rm -rf
 
 NAME	= push_swap
