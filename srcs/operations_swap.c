@@ -17,6 +17,8 @@ void	swap(t_stack *root)
 	t_stack	*sec;
 	int		temp;
 
+	if (!root)
+		return ;
 	sec = root->next;
 	temp = root->content;
 	root->content = sec->content;

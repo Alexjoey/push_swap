@@ -15,6 +15,7 @@
 
 # include "../libft/inc/libft.h"
 # include <stdbool.h>
+# include <limits.h>
 
 typedef struct s_moves
 {

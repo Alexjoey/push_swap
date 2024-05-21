@@ -221,7 +221,8 @@ void	ft_sort(t_stacks *stacks)
 		ft_threesort(stacks);
 	else
 	{
-		pb(stacks);
+		if (ft_stacksize(stacks->a) > 4)
+			pb(stacks);
 		pb(stacks);
 		ft_movecheapest(stacks);
 		ft_threesort(stacks);

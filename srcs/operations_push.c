@@ -16,6 +16,8 @@ void	push(t_stack **receiver, t_stack **giver)
 {
 	t_stack	*temp;
 
+	if (!*giver)
+		return ;
 	temp = *giver;
 	*giver = (*giver)->next;
 	temp->next = *receiver;

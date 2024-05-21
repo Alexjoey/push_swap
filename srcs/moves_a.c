@@ -26,32 +26,6 @@ int	find_closest_bigger_val(t_stacks *stacks, int i)
 	return (ret_val);
 }
 
-void	rotate_a(t_stacks *stacks)
-{
-	int	i;
-	int	index;
-	int	size;
-
-	stacks->moves->ra = 0;
-	stacks->moves->rra = 0;
-	i = find_closest_bigger_val(stacks, stacks->b->content);
-	if (stacks->a->content == i)
-		return ;
-	else
-	{
-		index = find_index_by_value(stacks->a, i);
-		size = ft_stacksize(stacks->a);
-		if (index >= (size + 1) / 2)
-			stacks->moves->rra = (size - index);
-		else
-			stacks->moves->ra = index;
-	}
-	while (stacks->moves->ra-- > 0)
-		ra(stacks);
-	while (stacks->moves->rra-- > 0)
-		rra(stacks);
-}
-
 void	put_a_in_order(t_stacks *stacks)
 {
 	int	i;
@@ -73,11 +47,15 @@ void	put_a_in_order(t_stacks *stacks)
 		ra(stacks);
 }
 
+//after all has been pushed to b besides 3 elements
+//find the target of current b, because of how its pushed you only need rra
+//then put min value as n1 of the stack
 void	push_to_a(t_stacks *stacks)
 {
 	while (stacks->b)
 	{
-		rotate_a(stacks);
+		while (!(stacks->a->content == find_closest_bigger_val(stacks, stacks->b->content)))
+			rra(stacks);
 		pa(stacks);
 	}
 	put_a_in_order(stacks);

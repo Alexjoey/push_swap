@@ -24,14 +24,14 @@ void	printstacks(t_stacks *stacks)
 	{
 		if (temp_a)
 		{
-			ft_printf("%d   |", temp_a->content);
+			ft_printf("%d		|", temp_a->content);
 			temp_a = temp_a->next;
 		}
 		else
-			ft_printf("    |");
+			ft_printf("		|");
 		if (temp_b)
 		{
-			ft_printf("   %d", temp_b->content);
+			ft_printf("		%d", temp_b->content);
 			temp_b = temp_b->next;
 		}
 		ft_printf("\n");

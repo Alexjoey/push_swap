@@ -31,55 +31,29 @@ void	ft_freestrarray(char **array)
 	free (array);
 }
 
-void	ft_input_error(int argc, char **argv)
+void	ft_errorandfree(t_stacks *stacks)
 {
-	if (argc == 1)
-		exit (0);
-	if (ft_isinputint(argv) == false)
+	ft_clearall(stacks);
+	ft_error ();
+}
+
+void	ft_stackclear(t_stack **stack)
+{
+	t_stack	*tmp;
+
+	while (stack && *stack)
 	{
-		if (argc == 2)
-			ft_freestrarray(argv);
-		ft_error ();
+		tmp = (*stack)->next;
+		free (*stack);
+		*stack = tmp;
 	}
 }
 
-bool	ft_isinputint(char **argc)
+void	ft_clearall(t_stacks *stacks)
 {
-	int		i;
-	int		j;
-	long	temp;
-
-	i = -1;
-	while (argc[++i])
-	{
-		j = 0;
-		if (argc[i][j] == '+' || argc[i][j] == '-')
-			j++;
-		while (argc[i][j] >= '0' && argc[i][j] <= '9')
-			j++;
-		if (argc[i][j] != '\0')
-			return (false);
-		temp = ft_atol(argc[i]);
-		if (temp > INT_MAX || temp < INT_MIN)
-			return (false);
-	}
-	return (true);
-}
-
-int	ft_checkduplicates(t_stack *stack_a)
-{
-	t_stack	*check;
-
-	while (stack_a && stack_a->next)
-	{
-		check = stack_a->next;
-		while (check)
-		{
-			if (stack_a->content == check->content)
-				return (1);
-			check = check->next;
-		}
-		stack_a = stack_a->next;
-	}
-	return (0);
+	ft_stackclear(&stacks->a);
+	ft_stackclear(&stacks->b);
+	free (stacks->moves);
+	free (stacks->cost);
+	free (stacks);
 }

@@ -23,7 +23,8 @@ t_stacks	*ft_initstacks(int argv, char **array)
 	stacks = ft_calloc(1, sizeof(*stacks));
 	if (!stacks)
 	{
-		ft_freestrarray(array);
+		if (argv == 2)
+			ft_freestrarray(array);
 		ft_error ();
 	}
 	i = -1;
@@ -32,10 +33,9 @@ t_stacks	*ft_initstacks(int argv, char **array)
 		new = ft_stacknew(ft_atoi(array[i]));
 		if (!new)
 		{
-			ft_clearall(stacks);
 			if (argv == 2)
 				ft_freestrarray(array);
-			ft_error ();
+			ft_errorandfree(stacks);
 		}
 		ft_stackadd_back(&stacks->a, new);
 	}

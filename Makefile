@@ -11,25 +11,30 @@
 # **************************************************************************** #
 
 SRCS	= ./srcs/*
+MAIN	= ./main.c
+BONUS_SRC	= ./bonus/checker_bonus.c
 CC		= cc
 CFLAGS	= -Wextra -Wall -Werror -g
 INCLUDE	= -Llibft -lft -Iincludes
 RM		= rm -rf
 
 NAME	= push_swap
+BONUS	= checker
 
 all:	$(NAME)
-
+bonus:	$(NAME) $(BONUS)
 $(NAME):	$(SRCS)
 				make -C ./libft
-				$(CC) $(CFLAGS) $(SRCS) $(INCLUDE) -o $(NAME)
+				$(CC) $(CFLAGS) $(MAIN) $(SRCS) $(INCLUDE) -o $(NAME)
 
+$(BONUS):	$(SRCS)
+				$(CC) $(CFLAGS) $(BONUS_SRC) $(SRCS) $(INCLUDE) -o $(BONUS)
 clean:	
 				$(RM) $(OBJS)
 				make clean -C ./libft
 
 fclean:		clean
-				$(RM) $(NAME)
+				$(RM) $(NAME) $(BONUS)
 				make fclean -C ./libft
 
 re:			fclean all
