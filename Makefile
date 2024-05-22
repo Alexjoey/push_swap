@@ -6,7 +6,7 @@
 #    By: amylle <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 11:58:06 by amylle            #+#    #+#              #
-#    Updated: 2024/05/10 14:47:16 by amylle           ###   ########.fr        #
+#    Updated: 2024/05/22 16:10:06 by amylle           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ CC		= cc
 CFLAGS	= -Wextra -Wall -Werror
 INCLUDE	= -Llibft -lft -I$(INC_DIR)
 RM		= rm -rf
+LIBFT	= libft.a
 
 NAME	= push_swap
 BONUS	= checker
@@ -36,18 +37,20 @@ BONUS	= checker
 all:	$(NAME)
 bonus:	$(NAME) $(BONUS)
 
-$(OBJ_DIR)/%.o: %.c
-				@mkdir -p $(@D)
-				@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+$(OBJ_DIR)/%.o: %.c $(LIBFT)
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@ 
 
-$(NAME):	$(OBJS)
-				@make -C ./libft
+$(LIBFT):	
+		@make -C ./libft
+
+$(NAME):	$(OBJS) $(LIBFT)
 				@echo Compiling $(NAME)
-				@$(CC) $(MAIN) $(OBJS) $(CFLAGS) $(INCLUDE) -o $(NAME)
+				@$(CC) $(INCLUDE) $(MAIN) $(OBJS) $(CFLAGS) -o $(NAME)
 
-$(BONUS):	$(SRCS)
+$(BONUS):	$(OBJS) $(LIBFT)
 				@echo Compiling $(BONUS)
-				@$(CC) $(CFLAGS) $(BONUS_SRC) $(OBJS) $(INCLUDE) -o $(BONUS)
+				@$(CC) $(INCLUDE) $(CFLAGS) $(BONUS_SRC) $(OBJS) -o $(BONUS)
 clean:	
 				$(RM) $(OBJ_DIR)
 				make clean -C ./libft
