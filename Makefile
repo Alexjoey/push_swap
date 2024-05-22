@@ -27,9 +27,9 @@ OBJS 		= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 CC		= cc
 CFLAGS	= -Wextra -Wall -Werror
-INCLUDE	= -Llibft -lft -I$(INC_DIR)
+INCLUDE	= -L./libft -lft -Iincludes
 RM		= rm -rf
-LIBFT	= libft.a
+LIBFT	= libft/libft.a
 
 NAME	= push_swap
 BONUS	= checker
@@ -39,18 +39,18 @@ bonus:	$(NAME) $(BONUS)
 
 $(OBJ_DIR)/%.o: %.c $(LIBFT)
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -c $< -o $@ 
 
 $(LIBFT):	
 		@make -C ./libft
 
 $(NAME):	$(OBJS) $(LIBFT)
 				@echo Compiling $(NAME)
-				@$(CC) $(INCLUDE) $(MAIN) $(OBJS) $(CFLAGS) -o $(NAME)
+				$(CC) $(CFLAGS) $(MAIN) $(OBJS) $(INCLUDE) -o $(NAME)
 
 $(BONUS):	$(OBJS) $(LIBFT)
 				@echo Compiling $(BONUS)
-				@$(CC) $(INCLUDE) $(CFLAGS) $(BONUS_SRC) $(OBJS) -o $(BONUS)
+				@$(CC) $(CFLAGS) $(BONUS_SRC) $(OBJS) $(INCLUDE)-o $(BONUS)
 clean:	
 				$(RM) $(OBJ_DIR)
 				make clean -C ./libft
