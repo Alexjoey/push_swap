@@ -7,8 +7,9 @@ int	find_closest_bigger_val(t_stacks *stacks, int i)
 	long	temp;
 	t_stack	*ptr;
 	int		ret_val;
+	int		flag;
 
-	ret_val = 0;
+	flag = 0;
 	ptr = stacks->a;
 	min_diff = INT_MAX;
 	while (ptr)
@@ -18,10 +19,11 @@ int	find_closest_bigger_val(t_stacks *stacks, int i)
 		{
 			min_diff = temp;
 			ret_val = ptr->content;
+			flag = 1;
 		}
 		ptr = ptr->next;
 	}
-	if (ret_val == 0)
+	if (flag == 0)
 		return (ft_mininstack(stacks->a));
 	return (ret_val);
 }
